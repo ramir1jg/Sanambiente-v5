@@ -1,0 +1,69 @@
+<!-- Clase que contiene el HTML de la vista de tipo de mantenimiento (Empleada para crear y actulizar un tipo de mantenimiento) -->
+
+<div class="container animated fadeIn fast" id="main-container" id="fuente-general">
+    <h1>Tipo Mantenimiento</h1>
+    <hr>
+    <form [formGroup]="formMaintenanceType">
+        <!-- Campo para ID del tipo de mantenimiento, que solo se muestra cuando se edita -->
+        <div class="form-group row" [hidden]="hide==false">
+            <label class="col-2 col-form-label">ID tipo mantenimiento</label>
+            <div class="col-4">
+                <input class="form-control" type="number" id="textId_tipo_mantenimiento" id="tamaño-fuente-input"
+                    value={{arrayMaintenanceType.id_tipo_mantenimiento}} disabled>
+            </div>
+        </div>
+
+        <!-- Campo para el nombre del tipo de mantenimiento -->
+        <div class="form-group row">
+            <label class="col-2 col-form-label">Nombre tipo mantenimiento</label>
+            <div class="col-5">
+                <input autofocus class="form-control" formControlName="nombre_tipo_mantenimiento" type="text"
+                    id="textNombre" [(ngModel)]="arrayMaintenanceType.nombre_tipo_mantenimiento"
+                    id="tamaño-fuente-input" maxlength="50">
+                <!-- Validacion para el campo nombre del tipo de mantenimiento -->
+                <div *ngIf="formMaintenanceType.controls['nombre_tipo_mantenimiento'].errors?.required"
+                    class="form-control-feedback" id="tamaño-fuente-alerta">
+                </div>
+
+                <!-- Mensaje de restricción para el campo nombre del tipo de mantenimiento -->
+                <div *ngIf="formMaintenanceType.controls['nombre_tipo_mantenimiento'].errors?.maxlength"
+                    class="form-control-feedback">
+                    <div class="alert alert-danger">
+                        <strong>Alerta!</strong> El campo debe tener máximo 50 carácteres.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Campo para observación de la observacion del tipo de mantenimiento  -->
+        <div class="form-group row">
+            <label class="col-2 col-form-label">Observación</label>
+            <div class="col-5">
+                <textarea ng-thim="false" class="form-control" formControlName="observacion_tipo_mantenimiento" rows="4"
+                    [(ngModel)]="arrayMaintenanceType.observacion_tipo_mantenimiento" id="tamaño-fuente-input"
+                    maxlength="50">
+               </textarea>
+                <span>{{50-arrayMaintenanceType.observacion_tipo_mantenimiento.length}} Caracteres restantes</span>
+
+                <!-- Validacion para el campo Observación del tipo de mantenimiento -->
+                <div *ngIf="formMaintenanceType.controls['observacion_tipo_mantenimiento'].errors?.required"
+                    class="form-control-feedback" id="tamaño-fuente-alerta">
+                </div>
+                <div style="margin-top: 20px;">
+                    <em> * Todos los campos son obligatorios </em>
+                </div>
+            </div>
+        </div>
+        <br>
+        <!-- Boton de guardar de tipo de mantenimiento -->
+        <div id="caja-botones" class="form-group-row">
+            <label class="col-1 col-form-label">&nbsp;</label>
+            <div class="col-md-8">
+                <button type="button" class="btn btn-outline-primary btn-lg" [disabled]="!formMaintenanceType.valid"
+                    (click)=" edit ? updateMaintenanceType() : createMaintenanceType()">
+                    Guardar
+                </button>
+            </div>
+        </div>
+    </form>
+</div>

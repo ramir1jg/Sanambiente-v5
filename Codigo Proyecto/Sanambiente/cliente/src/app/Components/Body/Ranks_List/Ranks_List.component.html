@@ -1,0 +1,46 @@
+<!-- Clase que contiene el HTML de la vista de rango (Empleada para listar en la tabla los rangos existentes) -->
+
+<div class="container animated fadeIn fast" id="div-tabla" id="fuente-general">
+    <!-- Boton para agregar un nuevo Rango-->
+    <button [routerLink]="['/rank/add_rank']" class="btn btn-outline-primary btn-lg">Nuevo Rango</button>
+    <br><br><br>
+    <h3>Lista de Rangos</h3>
+    <!-- Campo de busqueda -->
+    <form>
+        <input type="search" name="search" aria-label="search" [(ngModel)]="searchText" autocomplete="off"
+            placeholder="Buscar">&nbsp;&nbsp;
+    </form>
+    <br>
+    <!-- Inicio de la tabla, en la cual se listan los Rangos existentes -->
+    <table class="table col-6 table-striped">
+        <thead class="thead-dark">
+            <!-- Columnas de la tabla-->
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Valor Mínimo</th>
+                <th scope="col">Valor Máximo</th>
+                <th scope="col">Estación</th>
+                <th scope="col">Observación</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Filas de la tabla-->
+            <tr *ngFor="let rango of arrayRanks | filter:searchText">
+                <td> {{rango.id_rango}} </td>
+                <td> {{rango.nombre_rango}} </td>
+                <td> {{rango.valor_minimo}} </td>
+                <td> {{rango.valor_maximo}} </td>
+                <td> {{rango.nombre_estacion}} </td>
+                <td> {{rango.observacion_rango}} </td>
+                <td>
+                    <!-- Boton para actualizar la informacion de un Rango -->
+                    <a [routerLink]="['/rank/edit_rank',rango.id_rango]" class="btn btn-outline-primary btn-lg">
+                        Editar
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

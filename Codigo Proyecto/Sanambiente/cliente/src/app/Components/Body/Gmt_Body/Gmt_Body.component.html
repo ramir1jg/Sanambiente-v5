@@ -1,0 +1,68 @@
+<!-- Clase que contiene el HTML de la vista de gmt (Empleada para crear y actulizar un gmt) -->
+
+<div class="container animated fadeIn fast" id="main-container" id="fuente-general">
+    <h1>GMT</h1>
+    <hr>
+    <form [formGroup]="formGmt">
+        <!-- Campo para ID del gmt, que solo se muestra cuando se edita -->
+        <div class="form-group row" [hidden]="hide==false">
+            <label class="col-2 col-form-label">ID GMT</label>
+            <div class="col-2">
+                <input class="form-control" type="number" id="textId_gmt" id="tamaño-fuente-input"
+                    value={{arrayGmt.id_gmt}} disabled>
+            </div>
+        </div>
+
+        <!-- Campo para el nombre del gmt -->
+        <div class="form-group row">
+            <label class="col-2 col-form-label">Nombre GMT</label>
+            <div class="col-5">
+                <input autofocus class="form-control" formControlName="nombre_gmt" type="text" id="textNombre"
+                    [(ngModel)]="arrayGmt.nombre_gmt" id="tamaño-fuente-input" maxlength="50">
+
+                <!-- Validacion para el campo nombre del gmt -->
+                <div *ngIf="formGmt.controls['nombre_gmt'].errors?.required" class="form-control-feedback"
+                    id="tamaño-fuente-alerta">
+                </div>
+
+                <!-- Mensaje de restricción campo nombre del gmt -->
+                <div *ngIf="formGmt.controls['nombre_gmt'].errors?.maxlength" class="form-control-feedback">
+                    <div class="alert alert-danger">
+                        <strong>Alerta!</strong> El campo debe tener máximo 50 carácteres.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Campo para observación del gmt  -->
+        <div class="form-group row">
+            <label class="col-2 col-form-label">Observación</label>
+            <div class="col-5">
+                <textarea ng-thim="false" class="form-control" formControlName="observacion_gmt" rows="4"
+                    [(ngModel)]="arrayGmt.observacion_gmt" id="tamaño-fuente-input" maxlength="50">
+               </textarea>
+                <span>{{50-arrayGmt.observacion_gmt.length}} Caracteres restantes</span>
+
+                <!-- Validacion para el campo Observación del gmt -->
+                <div *ngIf="formGmt.controls['observacion_gmt'].errors?.required" class="form-control-feedback"
+                    id="tamaño-fuente-alerta">
+                </div>
+                <br>
+                <div style="margin-top: 20px;">
+                    <em> * Todos los campos son obligatorios </em>
+                </div>
+            </div>
+        </div>
+
+        <!-- Boton de guardarl gmt -->
+        <div id="caja-botones" class="form-group-row">
+            <label class="col-1 col-form-label">&nbsp;</label>
+            <div class="col-md-8">
+                <button type="button" class="btn btn-outline-primary btn-lg" [disabled]="!formGmt.valid"
+                    (click)=" edit ? updateGmt() : createGmt()">
+                    Guardar
+                </button>
+            </div>
+        </div>
+    </form>
+</div>

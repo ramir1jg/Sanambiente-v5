@@ -1,0 +1,346 @@
+<!-- Clase que contiene el HTML de la vista de estacion (Empleada para crear y actulizar una estacion) -->
+
+<div class="container animated fadeIn fast" id="main-container" id="fuente-general">
+    <h1>Estación</h1>
+    <hr>
+    <form [formGroup]="formStation">
+
+        <!-- Campo para ID de la estacion, que solo se muestra cuando se edita -->
+        <div class="form-group row" [hidden]="hide==false">
+            <label class="col-2 col-form-label">ID Estación</label>
+            <div class="col-3">
+                <input class="form-control" type="number" id="textId_ciudad" id="tamaño-fuente-input"
+                    value={{arrayStations.id_estacion}} disabled>
+            </div>
+        </div>
+
+        <!-- Campo para el nombre de la estacion -->
+        <div class="form-group row">
+            <label class="col-2 col-form-label">Nombre Estación</label>
+            <div class="col-5">
+                <input class="form-control" formControlName="nombre_estacion" type="text" autofocus id="textNombre"
+                    [(ngModel)]="arrayStations.nombre_estacion" id="tamaño-fuente-input" maxlength="50">
+
+                <!-- Este campo es requerido -->
+                <div *ngIf="formStation.controls['nombre_estacion'].errors?.required" class="form-control-feedback"
+                    id="tamaño-fuente-alerta">
+                </div>
+
+                <!-- Mensaje de restricción campo nombre estacion -->
+                <div *ngIf="formStation.controls['nombre_estacion'].errors?.maxlength" class="form-control-feedback">
+                    <div class="alert alert-danger">
+                        <strong>Alerta!</strong> El campo debe tener máximo 50 carácteres.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Campo para el serial de la estacion -->
+        <div class="form-group row">
+            <label class="col-2 col-form-label">Serial Estación</label>
+            <div class="col-5">
+                <input class="form-control" formControlName="serial_estacion" type="text" autofocus id="textSerial"
+                    [(ngModel)]="arrayStations.serial_estacion" id="tamaño-fuente-input" maxlength="50">
+
+                <!-- Validacion para el campo serial de la estacion -->
+                <div *ngIf="formStation.controls['serial_estacion'].errors?.required" class="form-control-feedback"
+                    id="tamaño-fuente-alerta">
+                </div>
+
+                <!-- Mensaje de restricción para el campo nombre de la estacion -->
+                <div *ngIf="formStation.controls['serial_estacion'].errors?.maxlength" class="form-control-feedback">
+                    <div class="alert alert-danger">
+                        <strong>Alerta!</strong> Máximo 50 carácteres.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Campo para el nombre corto de la estacion -->
+        <div class="form-group row">
+            <label class="col-2 col-form-label">Nombre corto</label>
+            <div class="col-5">
+                <input class="form-control" formControlName="nombre_corto_estacion" type="text" autofocus
+                    id="textNombreCorto" [(ngModel)]="arrayStations.nombre_corto_estacion" id="tamaño-fuente-input"
+                    maxlength="50">
+
+                <!-- Validacion para el campo nombre corto de la estacion -->
+                <div *ngIf="formStation.controls['nombre_corto_estacion'].errors?.required"
+                    class="form-control-feedback" id="tamaño-fuente-alerta">
+                </div>
+
+                <!-- Mensaje de restricción campo de nombre corto de estacion -->
+                <div *ngIf="formStation.controls['nombre_corto_estacion'].errors?.maxlength"
+                    class="form-control-feedback">
+                    <div class="alert alert-danger">
+                        <strong>Alerta!</strong> El campo debe tener máximo 50 carácteres.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Campo de tipo input, que muestra el nombre actual de la categoria, solo cuando se edita una estacion -->
+        <div class="form-group row" [hidden]="hide==false">
+            <label class="col-2 col-form-label">Categoría actual</label>
+            <div class="col-3">
+                <input class="form-control" type="text" id="textID_estacion" id="tamaño-fuente-input"
+                    value={{arrayStations.nombre_categoria}} disabled>
+            </div>
+        </div>
+
+        <!-- Campo para categoria con la cual se relaciona la estacion-->
+
+        <div class="form-group row">
+            <label class="col-2 col-form-label">Categoría estación</label>
+            <div class="col-3">
+                <select formControlName="id_categoria" class="form-control" type="number" id="textId_estacion"
+                    id="tamaño-fuente-input" data-formrun-required>
+                    <option *ngFor="let categoriaEstacion of categoryStation" value="{{categoriaEstacion.id_categoria}}"
+                        name="categoria-estacion">
+                        {{categoriaEstacion.nombre_categoria}}
+                    </option>
+                </select>
+
+                <!-- Validacion para el campo categoria de la estacion -->
+                <div *ngIf="formStation.controls['id_categoria'].errors?.required" class="form-control-feedback"
+                    id="tamaño-fuente-alerta">
+                </div>
+            </div>
+        </div>
+
+        <!-- Campo de tipo input, que muestra el nombre actual de la base de tiempo, solo cuando se edita una estacion -->
+        <div class="form-group row" [hidden]="hide==false">
+            <label class="col-2 col-form-label">Base de tiempo actual</label>
+            <div class="col-3">
+                <input class="form-control" type="text" id="textID_estacion" id="tamaño-fuente-input"
+                    value={{arrayStations.nombre_tiempo}} disabled>
+            </div>
+        </div>
+
+        <!-- Campo para base de tiempos con la cual se relaciona la estacion-->
+        <div class="form-group row">
+            <label class="col-2 col-form-label">Base de tiempo</label>
+            <div class="col-3">
+                <select formControlName="id_tiempo" class="form-control" type="number" id="textId_estacion"
+                    id="tamaño-fuente-input" data-formrun-required>
+                    <option *ngFor="let tiemposEstacion of timeStation" value="{{tiemposEstacion.id_tiempo}}"
+                        name="tiempo-estacion">
+                        {{tiemposEstacion.nombre_tiempo}}
+                    </option>
+                </select>
+
+                <!-- Validacion para el campo tiempos de la estacion -->
+                <div *ngIf="formStation.controls['id_tiempo'].errors?.required" class="form-control-feedback"
+                    id="tamaño-fuente-alerta">
+                </div>
+            </div>
+        </div>
+
+        <!-- Campo de tipo input, que muestra el nombre actual de la region, solo cuando se edita una estacion -->
+        <div class="form-group row" [hidden]="hide==false">
+            <label class="col-2 col-form-label">Región actual</label>
+            <div class="col-3">
+                <input class="form-control" type="text" id="textID_estacion" id="tamaño-fuente-input"
+                    value={{arrayStations.nombre_region}} disabled>
+            </div>
+        </div>
+
+        <!-- Campo para regiones con la cual se relaciona la estacion-->
+        <div class="form-group row">
+            <label class="col-2 col-form-label">Región estación</label>
+            <div class="col-3">
+                <select formControlName="id_region" class="form-control" type="number" id="textId_estacion"
+                    id="tamaño-fuente-input" data-formrun-required>
+                    <option *ngFor="let regionesEstacion of regionStation" value="{{regionesEstacion.id_region}}"
+                        name="region-estacion">
+                        {{regionesEstacion.nombre_region}}
+                    </option>
+                </select>
+
+                <!-- Validacion para el campo regiones de la estacion -->
+                <div *ngIf="formStation.controls['id_region'].errors?.required" class="form-control-feedback"
+                    id="tamaño-fuente-alerta">
+                </div>
+            </div>
+        </div>
+
+        <!-- Campo de tipo input, que muestra el nombre actual de la ciudad, solo cuando se edita una estacion -->
+        <div class="form-group row" [hidden]="hide==false">
+            <label class="col-2 col-form-label">Ciudad actual</label>
+            <div class="col-3">
+                <input class="form-control" type="text" id="textID_estacion" id="tamaño-fuente-input"
+                    value={{arrayStations.nombre_ciudad}} disabled>
+            </div>
+        </div>
+
+        <!-- Campo para ciudades con la cual se relaciona la region a su vez con la estacion-->
+        <div class="form-group row">
+            <label class="col-2 col-form-label">Ciudad estación</label>
+            <div class="col-3">
+                <select formControlName="id_ciudad" class="form-control" type="number" id="textId_estacion"
+                    id="tamaño-fuente-input" data-formrun-required>
+                    <option *ngFor="let ciudadesEstacion of cityStation" value="{{ciudadesEstacion.id_ciudad}}"
+                        name="ciudad-estacion">
+                        {{ciudadesEstacion.nombre_ciudad}}
+                    </option>
+                </select>
+
+                <!-- Validacion para el campo ciudades de la estacion -->
+                <div *ngIf="formStation.controls['id_ciudad'].errors?.required" class="form-control-feedback"
+                    id="tamaño-fuente-alerta">
+                </div>
+            </div>
+        </div>
+
+        <!-- Campo de tipo input, que muestra el nombre actual de la gmt, solo cuando se edita una estacion -->
+        <div class="form-group row" [hidden]="hide==false">
+            <label class="col-2 col-form-label">GMT actual</label>
+            <div class="col-3">
+                <input class="form-control" type="text" id="textID_estacion" id="tamaño-fuente-input"
+                    value={{arrayStations.nombre_gmt}} disabled>
+            </div>
+        </div>
+
+        <!-- Campo para gmt con el cual se relaciona la estacion-->
+        <div class="form-group row">
+            <label class="col-2 col-form-label">GMT estación</label>
+            <div class="col-3">
+                <select formControlName="id_gmt" class="form-control" type="number" id="textId_estacion"
+                    id="tamaño-fuente-input" data-formrun-required>
+                    <option *ngFor="let gmtEstacion of gmtStation" value="{{gmtEstacion.id_gmt}}" name="gmt-estacion">
+                        {{gmtEstacion.nombre_gmt}}
+                    </option>
+                </select>
+
+                <!-- Validacion para el campo gmt de la estacion -->
+                <div *ngIf="formStation.controls['id_gmt'].errors?.required" class="form-control-feedback"
+                    id="tamaño-fuente-alerta">
+                </div>
+            </div>
+        </div>
+
+        <!-- Campo para el protocolo de la estacion -->
+        <div class="form-group row">
+            <label class="col-2 col-form-label">protocolo</label>
+            <div class="col-3">
+                <select class="form-control" formControlName="protocolo_estacion" type="text" id="textNombre"
+                    [(ngModel)]="arrayStations.protocolo_estacion" id="tamaño-fuente-input">
+                    <option value="ftp">FTP</option>
+                    <option value="modbus">Modbus</option>
+                </select>
+
+                <!-- Validacion para el campo protocolo de la estacion -->
+                <div *ngIf="formStation.controls['protocolo_estacion'].errors?.required" class="form-control-feedback"
+                    id="tamaño-fuente-alerta">
+                </div>
+            </div>
+        </div>
+
+        <!-- Campo para la latitud de la estacion -->
+        <div class="form-group row">
+            <label class="col-2 col-form-label">Latitud</label>
+            <div class="col-5">
+                <input class="form-control" formControlName="latitud_estacion" type="text" autofocus id="textLatitud"
+                    [(ngModel)]="arrayStations.latitud_estacion" id="tamaño-fuente-input" maxlength="50">
+                <!-- Validacion para el campo latitud de la estacion -->
+                <div *ngIf="formStation.controls['latitud_estacion'].errors?.required" class="form-control-feedback"
+                    id="tamaño-fuente-alerta">
+                    <!-- Este campo es requerido -->
+                </div>
+                <!-- Mensaje de restricción para el campo latitud de la estacion -->
+                <div *ngIf="formStation.controls['latitud_estacion'].errors?.maxlength ||
+                formStation.controls['latitud_estacion'].errors?.pattern" class="form-control-feedback">
+                    <div class="alert alert-danger">
+                        <strong>Alerta!</strong> Los valores deben ser decimales(.) o enteros con máximo 50
+                        carácteres.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Campo para la Longitud de la estacion -->
+        <div class="form-group row">
+            <label class="col-2 col-form-label">Longitud</label>
+            <div class="col-5">
+                <input class="form-control" formControlName="longitud_estacion" type="text" autofocus id="textLongitud"
+                    [(ngModel)]="arrayStations.longitud_estacion" id="tamaño-fuente-input" maxlength="50">
+                <!-- Validacion para el campo Longitud de la estacion -->
+                <div *ngIf="formStation.controls['longitud_estacion'].errors?.required" class="form-control-feedback"
+                    id="tamaño-fuente-alerta">
+                    <!-- Este campo es requerido -->
+                </div>
+                <!-- Mensaje de restricción para el campo Longitud de la estacion -->
+                <div *ngIf="formStation.controls['longitud_estacion'].errors?.maxlength ||
+                formStation.controls['longitud_estacion'].errors?.pattern" class="form-control-feedback">
+                    <div class="alert alert-danger">
+                        <strong>Alerta!</strong> Los valores deben ser decimales(.) o enteros con máximo 50
+                        carácteres.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Campo para la Elevacion de la estacion -->
+        <div class="form-group row">
+            <label class="col-2 col-form-label">Elevación</label>
+            <div class="col-5">
+                <input class="form-control" formControlName="elevacion_estacion" type="text" autofocus
+                    id="textElevacion" [(ngModel)]="arrayStations.elevacion_estacion" id="tamaño-fuente-input"
+                    maxlength="50">
+
+                <!-- Validacion para el campo Elevacion de la estacion -->
+                <div *ngIf="formStation.controls['elevacion_estacion'].errors?.required" class="form-control-feedback"
+                    id="tamaño-fuente-alerta">
+                </div>
+
+                <!-- Mensaje de restricción para el campo Elevacion de la estacion -->
+                <div *ngIf="formStation.controls['elevacion_estacion'].errors?.maxlength ||
+                formStation.controls['elevacion_estacion'].errors?.pattern" class="form-control-feedback">
+                    <div class="alert alert-danger">
+                        <strong>Alerta!</strong>Los valores deben ser decimales(.) o enteros con máximo 50
+                        carácteres.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Campo para observación de la estacion  -->
+        <div class="form-group row">
+            <label class="col-2 col-form-label">Observación</label>
+            <div class="col-5">
+                <textarea ng-thim="false" class="form-control" formControlName="observacion_estacion" rows="4"
+                    [(ngModel)]="arrayStations.observacion_estacion" id="tamaño-fuente-input" maxlength="50">
+                </textarea>
+                <span>{{50-arrayStations.observacion_estacion.length}} Caracteres restantes</span>
+
+                <!-- Validacion para el campo Observación de la estacion -->
+                <div *ngIf="formStation.controls['observacion_estacion'].errors?.required" class="form-control-feedback"
+                    id="tamaño-fuente-alerta">
+                </div>
+
+                <!-- Mensaje de restricción campo Observación de la estacion -->
+                <div *ngIf="formStation.controls['observacion_estacion'].errors?.maxlength"
+                    class="form-control-feedback">
+                    <div class="alert alert-danger">
+                        <strong>Alerta!</strong> El campo debe tenermáximo 50 carácteres.
+                    </div>
+                </div>
+                <div style="margin-top: 20px;">
+                    <em> * Todos los campos son obligatorios </em>
+                </div>
+            </div>
+        </div>
+
+        <!-- Boton de guardar de estacion -->
+        <div id="caja-botones" class="form-group-row">
+            <label class="col-1 col-form-label">&nbsp;</label>
+            <div class="col-md-8">
+                <button type="button" class="btn btn-outline-primary btn-lg" [disabled]="!formStation.valid"
+                    (click)=" edit ? updateStation() : createStation()">
+                    Guardar
+                </button>
+            </div>
+        </div>
+
+    </form>
+</div>

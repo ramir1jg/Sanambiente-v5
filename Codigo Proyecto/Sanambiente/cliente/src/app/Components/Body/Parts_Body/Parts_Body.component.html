@@ -1,0 +1,92 @@
+<!-- Clase que contiene el HTML de la vista de parte (Empleada para crear y actulizar una parte) -->
+
+<div class="container animated fadeIn fast" id="main-container" id="fuente-general">
+    <h1>Parte</h1>
+    <hr>
+    <form [formGroup]="formPart">
+
+        <!-- Campo para ID de la parte, que solo se muestra cuando se edita -->
+        <div class="form-group row" [hidden]="hide==false">
+            <label class="col-2 col-form-label">ID parte</label>
+            <div class="col-4">
+                <input class="form-control" type="number" id="textId_parte" id="tamaño-fuente-input"
+                    value={{arrayParts.id_parte}} disabled>
+            </div>
+        </div>
+
+        <!-- Campo para el nombre de la parte -->
+        <div class="form-group row">
+            <label class="col-2 col-form-label">Nombre parte</label>
+            <div class="col-5">
+                <input autofocus class="form-control" formControlName="nombre_parte" type="text" id="textNombre"
+                    [(ngModel)]="arrayParts.nombre_parte" id="tamaño-fuente-input" maxlength="50">
+
+                <!-- Validacion para el campo nombre de la parte -->
+                <div *ngIf="formPart.controls['nombre_parte'].errors?.required" class="form-control-feedback"
+                    id="tamaño-fuente-alerta">
+                </div>
+
+                <!-- Mensaje de restricción para el campo nombre de la parte -->
+                <div *ngIf="formPart.controls['nombre_parte'].errors?.maxlength" class="form-control-feedback">
+                    <div class="alert alert-danger">
+                        <strong>Alerta!</strong> El campo debe tener máximo 50 carácteres.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Campo para el codigo de catalogo de la parte -->
+        <div class="form-group row">
+            <label class="col-2 col-form-label">Código catálogo</label>
+            <div class="col-5">
+                <input autofocus class="form-control" formControlName="codigo_catalogo" type="text"
+                    id="textCodigo_catalogo" [(ngModel)]="arrayParts.codigo_catalogo" id="tamaño-fuente-input"
+                    maxlength="50">
+
+                <!-- Validacion para el codigo de catalogo de la parte -->
+                <div *ngIf="formPart.controls['codigo_catalogo'].errors?.required" class="form-control-feedback"
+                    id="tamaño-fuente-alerta">
+                </div>
+
+                <!-- Mensaje de restricción para el codigo de catalogo de la parte -->
+                <div *ngIf="formPart.controls['codigo_catalogo'].errors?.maxlength" class="form-control-feedback">
+                    <div class="alert alert-danger">
+                        <strong>Alerta!</strong> El campo debe tener máximo 50 carácteres.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Campo para observación de la parte  -->
+        <div class="form-group row">
+            <label class="col-2 col-form-label">Observación</label>
+            <div class="col-5">
+                <textarea ng-thim="false" class="form-control" formControlName="observacion_parte" rows="4"
+                    [(ngModel)]="arrayParts.observacion_parte" id="tamaño-fuente-input" maxlength="50">
+               </textarea>
+
+                <span>{{50-arrayParts.observacion_parte.length}} Caracteres restantes</span>
+
+                <!-- Validacion para el campo Observación de la parte -->
+                <div *ngIf="formPart.controls['observacion_parte'].errors?.required" class="form-control-feedback"
+                    id="tamaño-fuente-alerta">
+                </div>
+                <div style="margin-top: 20px;">
+                    <em> * Todos los campos son obligatorios </em>
+                </div>
+            </div>
+        </div>
+        <br>
+
+        <!-- Boton de guardar de parte -->
+        <div id="caja-botones" class="form-group-row">
+            <label class="col-1 col-form-label">&nbsp;</label>
+            <div class="col-md-8">
+                <button type="button" class="btn btn-outline-primary btn-lg" [disabled]="!formPart.valid"
+                    (click)=" edit ? updatePart() : createPart()">
+                    Guardar
+                </button>
+            </div>
+        </div>
+    </form>
+</div>

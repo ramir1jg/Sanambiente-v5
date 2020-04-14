@@ -1,0 +1,96 @@
+<!-- Clase que contiene el HTML de la vista de ciudad (Empleada para crear y actulizar una ciudad) -->
+
+<div class="container animated fadeIn fast" id="main-container" id="fuente-general">
+    <h1>Ciudad</h1>
+    <hr>
+    <form [formGroup]="formCity">
+        <!-- Campo para ID de la ciudad, que solo se muestra cuando se edita -->
+        <div class="form-group row" [hidden]="hide==false">
+            <label class="col-2 col-form-label">ID ciudad</label>
+            <div class="col-2">
+                <input class="form-control" type="number" id="textId_ciudad" id="tamaño-fuente-input"
+                    value={{arrayCities.id_ciudad}} disabled>
+            </div>
+        </div>
+
+        <!-- Campo de tipo input, que muestra el nombre de la region, solo cuando se edita una ciudad -->
+        <div class="form-group row" [hidden]="hide==false">
+            <label class="col-2 col-form-label">Región actual</label>
+            <div class="col-2">
+                <input class="form-control" type="text" id="textNombre_region" id="tamaño-fuente-input"
+                    value={{arrayCities.nombre_region}} disabled>
+            </div>
+        </div>
+
+        <!-- Campo para region con la cual se relaciona la ciudad-->
+        <div class="form-group row">
+            <label class="col-2 col-form-label">Región</label>
+            <div class="col-2">
+                <select formControlName="id_region" class="form-control" type="number" id="textId_region"
+                    id="tamaño-fuente-input" data-formrun-required>
+                    <option *ngFor="let regionCiudad of regionCity" value="{{regionCiudad.id_region}}"
+                        name="region-ciudad">
+                        {{regionCiudad.nombre_region}}
+                    </option>
+                </select>
+
+                <!-- Validacion para el campo region de la ciudad -->
+                <div *ngIf="formCity.controls['id_region'].errors?.required" class="form-control-feedback"
+                    id="tamaño-fuente-alerta">
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Campo para el nombre de la ciudad -->
+        <div class="form-group row">
+            <label class="col-2 col-form-label">Nombre ciudad</label>
+            <div class="col-5">
+                <input class="form-control" formControlName="nombre_ciudad" type="text" autofocus id="textNombre"
+                    [(ngModel)]="arrayCities.nombre_ciudad" id="tamaño-fuente-input" maxlength="50">
+
+                <!-- Validacion para el campo nombre de la ciudad -->
+                <div *ngIf="formCity.controls['nombre_ciudad'].errors?.required" class="form-control-feedback"
+                    id="tamaño-fuente-alerta">
+                </div>
+
+                <!-- Mensaje de restricción campo nombre de la ciudad -->
+                <div *ngIf="formCity.controls['nombre_ciudad'].errors?.maxlength" class="form-control-feedback">
+                    <div class="alert alert-danger">
+                        <strong>Alerta!</strong> El campo debe tener máximo 50 carácteres.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Campo para observación de la ciudad  -->
+        <div class="form-group row">
+            <label class="col-2 col-form-label">Observación</label>
+            <div class="col-5">
+                <textarea ng-thim="false" class="form-control" formControlName="observacion_ciudad" rows="4"
+                    [(ngModel)]="arrayCities.observacion_ciudad" id="tamaño-fuente-input" maxlength="50">
+                </textarea>
+                <span>{{50-arrayCities.observacion_ciudad.length}} Caracteres restantes</span>
+
+                <!-- Validacion para el campo Observación de la ciudad -->
+                <div *ngIf="formCity.controls['observacion_ciudad'].errors?.required" class="form-control-feedback"
+                    id="tamaño-fuente-alerta">
+                </div>
+                <div style="margin-top: 20px;">
+                    <em> * Todos los campos son obligatorios </em>
+                </div>
+            </div>
+        </div>
+
+        <!-- Boton de guardar de ciudad -->
+        <div id="caja-botones" class="form-group-row">
+            <label class="col-1 col-form-label">&nbsp;</label>
+            <div class="col-md-8">
+                <button type="button" [disabled]="!formCity.valid" class="btn btn-outline-primary btn-lg"
+                    (click)=" edit ? updateCity() : createCity()">
+                    Guardar
+                </button>
+            </div>
+        </div>
+    </form>
+</div>

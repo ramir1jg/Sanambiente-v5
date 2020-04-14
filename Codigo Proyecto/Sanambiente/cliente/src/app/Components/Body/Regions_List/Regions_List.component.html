@@ -1,0 +1,40 @@
+<!-- Clase que contiene el HTML de la vista de region (Empleada para listar en la tabla las regiones existentes) -->
+
+<div class="container animated fadeIn fast" id="div-tabla" id="fuente-general">
+    <!-- Boton para agregar una nueva región-->
+    <button [routerLink]="['/region/add_region']" class="btn btn-outline-primary btn-lg">Nueva Región</button>
+    <br><br><br>
+    <h3>Lista de Regiónes</h3>
+    <!-- Campo de busqueda -->
+    <form>
+        <input type="search" name="search" aria-label="search" [(ngModel)]="searchText" autocomplete="off"
+            placeholder="Buscar">&nbsp;&nbsp;
+    </form>
+    <br>
+    <!-- Inicio de la tabla, en la cual se listan las regiones existentes-->
+    <table class="table col-6 table-striped">
+        <thead class="thead-dark">
+            <!-- Columnas de la tabla-->
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Observación</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Filas de la tabla-->
+            <tr *ngFor="let region of arrayRegions | filter:searchText">
+                <td> {{region.id_region}} </td>
+                <td> {{region.nombre_region}} </td>
+                <td> {{region.observacion_region}} </td>
+                <td>
+                    <!-- Boton para actualizar la informacion de una región -->
+                    <a [routerLink]="['/region/edit_region',region.id_region]" class="btn btn-outline-primary btn-lg">
+                        Editar
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

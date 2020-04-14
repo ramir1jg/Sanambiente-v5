@@ -1,0 +1,53 @@
+<!-- Clase que contiene el HTML de la vista de alerta (Empleada para listar en la tabla las alertas existentes) -->
+<div class="container animated fadeIn fast" id="div-tabla" id="fuente-general">
+    <!-- Boton para agregar una nueva alerta-->
+    <button [routerLink]="['/alert/add_alert']" class="btn btn-outline-primary btn-lg">Nueva Alerta</button>
+    <br><br><br>
+    <h3>Lista de Alertas</h3>
+    <!-- Campo de busqueda -->
+    <form>
+        <input type="search" name="search" aria-label="search" [(ngModel)]="searchText" autocomplete="off"
+            placeholder="Buscar">&nbsp;&nbsp;
+    </form>
+    <br>
+    <!-- Inicio de la tabla, en la cual se listan las alerta existentes -->
+    <table class="table col-6 table-striped">
+        <thead class="thead-dark">
+            <!-- Columnas de la tabla-->
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Asunto</th>
+                <th scope="col">Email</th>
+                <th scope="col">Servidor SMTP</th>
+                <th scope="col">Puerto SMTP</th>
+                <th scope="col">Seguridad</th>
+                <th scope="col">Para</th>
+                <th scope="col">De</th>
+                <th scope="col">Observación</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Filas de la tabla-->
+            <tr *ngFor="let alert of arrayAlerts | filter:searchText">
+                <td> {{alert.id_alerta}} </td>
+                <td> {{alert.nombre_alerta}} </td>
+                <td> {{alert.asunto_alerta}} </td>
+                <td> {{alert.email_alerta}} </td>
+                <td> {{alert.servidorsmtp_alerta}} </td>
+                <td> {{alert.puertosmtp_alerta}} </td>
+                <td> {{alert.seguridad_alerta}} </td>
+                <td> {{alert.emailpara_alerta}} </td>
+                <td> {{alert.emailde_alerta}} </td>
+                <td> {{alert.observacion_alerta}} </td>
+                <td>
+                    <!-- Boton para actualizar la informacion de una Alerta -->
+                    <a [routerLink]="['/alert/edit_alert',alert.id_alerta]" class="btn btn-outline-primary btn-lg">
+                        Editar
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,141 @@
+<!-- Clase que contiene el HTML de la vista de rango (Empleada para crear y actulizar un rango) -->
+
+<div class="container animated fadeIn fast" id="main-container" id="fuente-general">
+    <h1>Rango</h1>
+    <hr>
+    <form [formGroup]="formRank">
+        <!-- Campo para ID solo se muestra cuando se edita -->
+        <div class="form-group row" [hidden]="hide==false">
+            <label class="col-2 col-form-label">ID Rango</label>
+            <div class="col-2">
+                <input class="form-control" type="number" id="textId_rango" id="tamaño-fuente-input"
+                    value={{arrayRanks.id_rango}} disabled>
+            </div>
+        </div>
+
+        <!-- Campo para rango minimo -->
+        <div class="form-group row">
+            <label class="col-2 col-form-label">Valor Mínimo</label>
+            <div class="col-3">
+                <input class="form-control" formControlName="valor_minimo" type="text" autofocus id="textRango_Minimo"
+                    [(ngModel)]="arrayRanks.valor_minimo" id="tamaño-fuente-input" maxlength="20">
+
+                <!-- Validacion para el campo valor minimo del rango -->
+                <div *ngIf="formRank.controls['valor_minimo'].errors?.required" class="form-control-feedback"
+                    id="tamaño-fuente-alerta">
+                </div>
+
+                <!-- Mensaje de restricción para el campo valor minimo del rango-->
+                <div *ngIf="formRank.controls['valor_minimo'].errors?.maxlength ||
+                formRank.controls['valor_minimo'].errors?.pattern" class="form-control-feedback">
+                    <div class="alert alert-danger">
+                        <strong>Alerta!</strong> Campo númerico, maximo 20 digitos.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Campo para rango maximo -->
+        <div class="form-group row">
+            <label class="col-2 col-form-label"> Valor Máximo</label>
+            <div class="col-3">
+                <input class="form-control" formControlName="valor_maximo" type="text" autofocus id="textRango_Maximo"
+                    [(ngModel)]="arrayRanks.valor_maximo" id="tamaño-fuente-input" maxlength="20">
+
+                <!-- Validacion para el campo valor maximo del rango -->
+                <div *ngIf="formRank.controls['valor_maximo'].errors?.required" class="form-control-feedback"
+                    id="tamaño-fuente-alerta">
+                </div>
+
+                <!-- Mensaje de restricción para el campo valor maximo del rango-->
+                <div *ngIf="formRank.controls['valor_maximo'].errors?.maxlength ||
+                formRank.controls['valor_maximo'].errors?.pattern" class="form-control-feedback">
+                    <div class="alert alert-danger">
+                        <strong>Alerta!</strong> Campo númerico, maximo 20 digitos.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Campo de tipo input, que muestra el nombre de la estacion, solo cuando se edita un rango -->
+        <div class="form-group row" [hidden]="hide==false">
+            <label class="col-2 col-form-label">Estacion del rango (Actual)</label>
+            <div class="col-3">
+                <input class="form-control" type="text" id="textNombre_estacion" id="tamaño-fuente-input"
+                    value={{arrayRanks.nombre_estacion}} disabled>
+            </div>
+        </div>
+
+        <!-- Campo para estacion -->
+        <div class="form-group row">
+            <label class="col-2 col-form-label">Estación</label>
+            <div class="col-3">
+                <select formControlName="id_estacion" class="form-control" type="number" id="textId_estacion"
+                    id="tamaño-fuente-input">
+                    <option *ngFor="let estacionRango of stationRank" value="{{estacionRango.id_estacion}}">
+                        {{estacionRango.nombre_estacion}}
+                    </option>
+                </select>
+
+                <!-- Validacion para el campo estacion del rango -->
+                <div *ngIf="formRank.controls['id_estacion'].errors?.required" class="form-control-feedback"
+                    id="tamaño-fuente-alerta">
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Campo para nombre del rango -->
+        <div class="form-group row">
+            <label class="col-2 col-form-label">Nombre del Rango</label>
+            <div class="col-5">
+                <input class="form-control" formControlName="nombre_rango" type="text" autofocus id="textNombre_Rango"
+                    [(ngModel)]="arrayRanks.nombre_rango" id="tamaño-fuente-input" maxlength="50">
+
+                <!-- Validacion para el campo nombre del rango -->
+                <div *ngIf="formRank.controls['nombre_rango'].errors?.required" class="form-control-feedback"
+                    id="tamaño-fuente-alerta">
+                </div>
+
+                <!-- Mensaje de restricción para el campo nombre del rango-->
+                <div *ngIf="formRank.controls['nombre_rango'].errors?.maxlength" class="form-control-feedback">
+                    <div class="alert alert-danger">
+                        <strong>Alerta!</strong> El campo debe tener máximo 50 carácteres.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Campo para observaciones del rango -->
+        <div class="form-group row">
+            <label class="col-2 col-form-label">Observación</label>
+            <div class="col-5">
+                <textarea ng-thim="false" class="form-control" formControlName="observacion_rango" rows="4"
+                    [(ngModel)]="arrayRanks.observacion_rango" id="tamaño-fuente-input" maxlength="50">
+                            </textarea>
+                <span>{{50-arrayRanks.observacion_rango.length}} Caracteres restantes</span>
+
+                <!-- Validacion para el campo Observación del rango -->
+                <div *ngIf="formRank.controls['observacion_rango'].errors?.required" class="form-control-feedback"
+                    id="tamaño-fuente-alerta">
+                </div>
+                <br>
+                <div style="margin-top: 20px;">
+                    <em> * Todos los campos son obligatorios </em>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Boton de guardar -->
+        <div id="caja-botones" class="form-group-row">
+            <label class="col-1 col-form-label">&nbsp;</label>
+            <div class="col-md-8">
+                <button type="button" [disabled]="!formRank.valid" class="btn btn-outline-primary btn-lg"
+                    (click)=" edit ? updateRank() : createRank()">
+                    Guardar
+                </button>
+            </div>
+        </div>
+    </form>
+</div>

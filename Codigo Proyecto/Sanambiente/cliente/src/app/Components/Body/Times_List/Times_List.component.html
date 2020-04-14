@@ -1,0 +1,42 @@
+<!-- Clase que contiene el HTML de la vista de Base de Tiempo (Empleada para listar en la tabla las Base de Tiempo existentes) -->
+
+<div class="container animated fadeIn fast" id="div-tabla" id="fuente-general">
+    <!-- Boton para agregar una nueva Base de Tiempo-->
+    <button [routerLink]="['/time/add_time']" class="btn btn-outline-primary btn-lg">Nueva Base de Tiempo</button>
+    <br><br><br>
+    <h3>Listado de Base de Tiempo</h3>
+    <!-- Campo de busqueda -->
+    <form>
+        <input type="search" name="search" aria-label="search" [(ngModel)]="searchText" autocomplete="off"
+            placeholder="Buscar">&nbsp;&nbsp;
+    </form>
+    <br>
+    <!-- Inicio de la tabla, en la cual se listan las Bases de Tiempos existentes -->
+    <table class="table col-6 table-striped">
+        <thead class="thead-dark">
+            <!-- Columnas de la tabla-->
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Escala Tiempo</th>
+                <th scope="col">Observación</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Filas de la tabla-->
+            <tr *ngFor="let tiempo of arrayTimes | filter:searchText">
+                <td> {{tiempo.id_tiempo}} </td>
+                <td> {{tiempo.nombre_tiempo}} </td>
+                <td> {{tiempo.escala_tiempo}} </td>
+                <td> {{tiempo.observacion_tiempo}} </td>
+                <td>
+                    <!-- Boton para actualizar la informacion de una Base de Tiempo -->
+                    <a [routerLink]="['/time/edit_time',tiempo.id_tiempo]" class="btn btn-outline-primary btn-lg">
+                        Editar
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

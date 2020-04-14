@@ -1,0 +1,129 @@
+<!-- Clase que contiene el HTML de la vista de Base de tiempo (Empleada para crear y actulizar una base de tiempo) -->
+
+<div class="container animated fadeIn fast" id="main-container" id="fuente-general">
+    <h1>Base de Tiempo</h1>
+    <hr>
+    <form [formGroup]="formTime">
+
+        <!-- Campo para ID solo se muestra cuando se edita -->
+        <div class="form-group row" [hidden]="hide==false">
+            <label class="col-2 col-form-label">ID Base de Tiempo</label>
+            <div class="col-2">
+                <input class="form-control" type="number" id="textId_tiempo" id="tamaño-fuente-input"
+                    value={{arrayTimes.id_tiempo}} disabled>
+            </div>
+        </div>
+
+        <!-- Campo para el nombre -->
+        <div class="form-group row">
+            <label class="col-2 col-form-label">Nombre</label>
+            <div class="col-5">
+                <input class="form-control" formControlName="nombre_tiempo" type="text" autofocus id="textTiempo_Nombre"
+                    [(ngModel)]="arrayTimes.nombre_tiempo" id="tamaño-fuente-input" maxlength="50">
+
+                <!-- Validacion para el campo nombre de la Base de Tiempo -->
+                <div *ngIf="formTime.controls['nombre_tiempo'].errors?.required" class="form-control-feedback"
+                    id="tamaño-fuente-alerta">
+                </div>
+
+                <!-- Mensaje de restricción campo nombre de la Base de Tiempo -->
+                <div *ngIf="formTime.controls['nombre_tiempo'].errors?.maxlength" class="form-control-feedback">
+                    <div class="alert alert-danger">
+                        <strong>Alerta!</strong> El campo debe tener máximo 50 carácteres.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Campo para Escala de Tiempo Actual-->
+        <div class="form-group row">
+            <label class="col-2 col-form-label">Escala de Tiempo</label>
+            <div class="col-5">
+                <!-- Campo de tipo input, que muestra la escalade tiempo, solo cuando se edita una base de tiempo -->
+                <input formControlName="escala_tiempo" class="form-control" type="text" id="escala_tiempo"
+                    id="tamaño-fuente-input" data-formrun-required [(ngModel)]="arrayTimes.escala_tiempo"
+                    value={{arrayTimes.escala_tiempo}} maxlength="4">
+
+                Digite escala de tiempo en minutos
+
+                <!-- Validacion para el campo Escala de Tiempo de la Base de Tiempo -->
+                <div *ngIf="formTime.controls['escala_tiempo'].errors?.required" class="form-control-feedback"
+                    id="tamaño-fuente-alerta">
+                </div>
+                <!-- Mensaje de restricción para el campo Escala de tiempo -->
+                <div *ngIf="formTime.controls['escala_tiempo'].errors?.min ||
+                    formTime.controls['escala_tiempo'].errors?.max || 
+                    formTime.controls['escala_tiempo'].errors?.pattern" class="form-control-feedback">
+                    <div class="alert alert-danger">
+                        <strong>Alerta!</strong> Los valores deben estar entre 1 y 1440.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Campo para observaciones  -->
+        <div class="form-group row">
+            <label class="col-2 col-form-label">Observación</label>
+            <div class="col-5">
+                <textarea data-ls-module="charCounter" ng-thim="false" class="form-control"
+                    formControlName="observacion_tiempo" rows="4" [(ngModel)]="arrayTimes.observacion_tiempo"
+                    id="tamaño-fuente-input" maxlength="50">
+                </textarea>
+                <span>{{50-arrayTimes.observacion_tiempo.length}} Caracteres restantes</span>
+
+                <!-- Validacion para el campo observacion de la Base de Tiempo -->
+                <div *ngIf="formTime.controls['observacion_tiempo'].errors?.required" class="form-control-feedback"
+                    id="tamaño-fuente-alerta">
+                </div>
+
+                <!-- Mensaje de restricción para el campo observacion de la Base de Tiempo -->
+                <div *ngIf="formTime.controls['observacion_tiempo'].errors?.maxlength" class="form-control-feedback">
+                    <div class="alert alert-danger">
+                        <strong>Alerta!</strong> El campo debe tener máximo 50 carácteres.
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div>
+            <!--
+         Campo para Alerta de Tiempo 
+        <div>
+            <div class="form-group row">
+                <label class="col-2 col-form-label">Alerta base tiempo</label>
+                <div class="col-4">
+                    <select formControlName="id_alerta" class="form-control" type="number" id="textId_alerta"
+                        id="tamaño-fuente-input" data-formrun-required>
+                        <option *ngFor="let alertaTiempo of alertTime" value="{{alertaTiempo.id_alerta}}"
+                            name="alerta-tiempo">
+                            {{alertaTiempo.nombre_alerta}}
+                        </option>
+                    </select>
+
+                     Validacion para el campo observacion de la Base de Tiempo 
+                    <div *ngIf="formTime.controls['id_alerta'].errors?.required" class="form-control-feedback"
+                        id="tamaño-fuente-alerta">
+                    </div>
+                    <br>
+                    <div style="margin-top: 20px;">
+                        <em> * Todos los campos son obligatorios </em>
+                    </div>
+                </div>
+            </div>
+        </div>
+    -->
+        </div>
+
+        <!-- Boton de guardar de la Base de Tiempo -->
+        <div id="caja-botones" class="form-group-row">
+            <label class="col-1 col-form-label">&nbsp;</label>
+            <div class="col-md-8">
+                <button type="button" class="btn btn-outline-primary btn-lg"
+                    (click)=" edit ? updateTime() : createTime()">
+                    Guardar
+                </button>
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,41 @@
+<!-- Clase que contiene el HTML de la vista de Categoria (Empleada para listar en la tabla las Categorias existentes) -->
+
+<div class="container animated fadeIn fast" id="div-tabla" id="fuente-general">
+    <!-- Boton para agregar una nueva Categoria-->
+    <button [routerLink]="['/category/add_category']" class="btn btn-outline-primary btn-lg">Nueva Categoría</button>
+    <br><br><br>
+    <h3>Lista de Categorias</h3>
+    <!-- Campo de busqueda -->
+    <form>
+        <input type="search" name="search" aria-label="search" [(ngModel)]="searchText" autocomplete="off"
+            placeholder="Buscar">&nbsp;&nbsp;
+    </form>
+    <br>
+    <!-- Inicio de la tabla, en la cual se listan las Categorias existentes -->
+    <table class="table col-6 table-striped">
+        <thead class="thead-dark">
+            <!-- Columnas de la tabla-->
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Observación</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Filas de la tabla-->
+            <tr *ngFor="let category of arrayCategories | filter:searchText">
+                <td> {{category.id_categoria}} </td>
+                <td> {{category.nombre_categoria}} </td>
+                <td> {{category.observacion_categoria}} </td>
+                <td>
+                    <!-- Boton para actualizar la informacion de una Categoria -->
+                    <a [routerLink]="['/category/edit_category',category.id_categoria]"
+                        class="btn btn-outline-primary btn-lg">
+                        Editar
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

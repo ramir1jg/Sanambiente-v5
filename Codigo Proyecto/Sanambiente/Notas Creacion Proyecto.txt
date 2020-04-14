@@ -1,0 +1,29 @@
+pg-promise
+pg --save
+
+* Con el siguiente script automatizo la vigilancia del codigo typescript. Lo creo dentro del archivo llamado
+package.json en la parte del codigo "scripts": {"build": "tsc -w"} que esta dentro de la carpeta servidor.
+
+* Con el siguiente script automatizo la vigilancia del codigo javascript. Lo creo dentro del archivo llamado
+package.json en la parte del codigo "scripts": {"dev": "nodemon build/index.js"} que esta dentro de la carpeta servidor.
+
+1) Automatizacion: dentro de package.json creamos un comando llamdo build; el cual siempre esta escuchando 
+los cambios que hago. Para ejecutarlo; dentro de server escribir: npm run build
+
+
+2) para iniciar el proyecto dentro de la carpeta server: npm run dev
+
+3) para ejecutar el proyecto para el navegador dentro de la carpeta client: ng serve 
+en el navegador localhost:4200
+
+* instalamos morgan que nos permite ver las peticiones get,post, put y delete que realicen el cliente.
+* instalamos cors que permite al cliente (angular) hacer peticiones al servidor (rest api).
+* al usar this.app.use(express.json()); usamos el metodo json de expres, que permite mi servidor aceptar, 
+    entienda y responda a formatos json de aplicaciones clientes (angular).
+
+* json web tokens?
+* En el cliente instalar las dependencias bootstrap, jquery y popper.js
+* cdk scrollable y dispatcher
+* contrase�a postgresql: admin2019
+* man entorno js
+* Creacion de componentes: 1:37:00

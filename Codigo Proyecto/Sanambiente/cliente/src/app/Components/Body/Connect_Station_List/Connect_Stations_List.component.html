@@ -1,0 +1,54 @@
+<!-- Clase que contiene el HTML de la vista de estacion (Empleada para listar en la tabla las estaciones existentes) -->
+
+<div class="container animated fadeIn fast" id="div-tabla" id="fuente-general">
+    <br><br><br>
+    <h3>Lista de Estaciones</h3>
+    <!-- Campo de busqueda -->
+    <form>
+        <input type="search" name="search" aria-label="search" [(ngModel)]="searchText" autocomplete="off"
+            placeholder="Buscar">&nbsp;&nbsp;
+    </form>
+    <br>
+    <!-- Inicio de la tabla, en la cual se listan las estaciones existentes -->
+    <table class="table col-6 table-striped">
+        <thead class="thead-dark">
+            <!-- Columnas de la tabla-->
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Nombre estación</th>
+                <th scope="col">Serial</th>
+                <th scope="col">Nombre corto</th>
+                <th scope="col">Protocolo</th>
+                <th scope="col">Categoría</th>
+                <th scope="col">Ciudad</th>
+                <th scope="col">Región</th>
+                <th scope="col">Base Tiempo</th>
+                <th scope="col">GMT</th>
+                <th scope="col">Observación</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Filas de la tabla-->
+            <tr *ngFor="let station of arrayStations | filter:searchText">
+                <td> {{station.id_estacion}} </td>
+                <td> {{station.nombre_estacion}} </td>
+                <td> {{station.serial_estacion}} </td>
+                <td> {{station.nombre_corto_estacion}} </td>
+                <td> {{station.protocolo_estacion}} </td>
+                <td> {{station.nombre_categoria}} </td>
+                <td> {{station.nombre_ciudad}} </td>
+                <td> {{station.nombre_region}} </td>
+                <td> {{station.nombre_tiempo}} </td>
+                <td> {{station.nombre_gmt}} </td>
+                <td> {{station.observacion_estacion}} </td>
+                <td>
+                    <!-- Boton para actualizar la informacion de una estacion -->
+                    <a [routerLink]="['/connect/station',station.id_estacion]" class="btn btn-outline-primary btn-lg">
+                        Seleccionar
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

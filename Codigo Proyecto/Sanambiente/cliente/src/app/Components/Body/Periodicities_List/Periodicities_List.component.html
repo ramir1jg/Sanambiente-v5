@@ -1,0 +1,42 @@
+<!-- Clase que contiene el HTML de la vista de periodicidad (Empleada para listar en la tabla las periodicidades existentes) -->
+
+<div class="container animated fadeIn fast" id="div-tabla" id="fuente-general">
+    <!-- Boton para agregar una nueva periodicidad-->
+    <button [routerLink]="['/periodicity/add_periodicity']" class="btn btn-outline-primary btn-lg">Nueva
+        Periodicidad</button>
+    <br><br><br>
+    <h3>Lista de Periodicidades</h3>
+    <!-- Campo de busqueda -->
+    <form>
+        <input type="search" name="search" aria-label="search" [(ngModel)]="searchText" autocomplete="off"
+            placeholder="Buscar">&nbsp;&nbsp;
+    </form>
+    <br>
+    <!-- Inicio de la tabla, en la cual se listan las periodicidades existentes-->
+    <table class="table col-6 table-striped">
+        <thead class="thead-dark">
+            <!-- Columnas de la tabla-->
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Tipo Periodicidad</th>
+                <th scope="col">Observación</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Filas de la tabla-->
+            <tr *ngFor="let periodicidad of arrayPeriodicities | filter:searchText">
+                <td> {{periodicidad.id_periodicidad}} </td>
+                <td> {{periodicidad.tipo_periodicidad}} </td>
+                <td> {{periodicidad.observacion_periodicidad}} </td>
+                <td>
+                    <!-- Boton para actualizar la informacion de una periodicidad -->
+                    <a [routerLink]="['/periodicity/edit_periodicity',periodicidad.id_periodicidad]"
+                        class="btn btn-outline-primary btn-lg">
+                        Editar
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

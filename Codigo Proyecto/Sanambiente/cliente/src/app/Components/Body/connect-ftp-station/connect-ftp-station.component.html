@@ -1,0 +1,145 @@
+<!-- Clase que contiene el HTML de la vista de ConcecionFTP -->
+<div class="container animated fadeIn fast" id="main-container" id="fuente-general">
+    <h1>Conectar protocolo FTP</h1>
+    <hr>
+    <form [formGroup]="formFtp">
+
+        <!-- Campo para la estacion que realizara la conexion -->
+        <div class="form-group row">
+            <label class="col-2 col-form-label">Id Estacion</label>
+            <div class="col-2">
+                <input class="form-control" formControlName="id_estacion" type="number" id="textId_alerta"
+                    id="tamaño-fuente-input" disabled>
+            </div>
+        </div>
+
+        <!-- Campo para la conexion que realizara la conexion -->
+        <div class="form-group row">
+            <label class="col-2 col-form-label">Id Conexion</label>
+            <div class="col-2">
+                <input class="form-control" formControlName="id_conexion" type="number" id="textId_alerta"
+                    id="tamaño-fuente-input" disabled>
+            </div>
+        </div>
+
+        <!-- Campo el nombre de la plantilla con la cual se va a almacenar los datos -->
+        <div class="form-group row">
+            <label class="col-2 col-form-label">Id Plantilla</label>
+            <div class="col-2">
+                <input class="form-control" formControlName="id_plantilla" type="number" id="textId_alerta"
+                    id="tamaño-fuente-input" disabled>
+            </div>
+        </div>
+
+        <!-- Campo para el Puerto -->
+        <div class="form-group row">
+            <label class="col-2 col-form-label">Puerto</label>
+
+            <div class="col-2">
+                <input class="form-control" formControlName="puerto_ftp" type="text" autofocus id="textNombre"
+                    id="tamaño-fuente-input" maxlength="51">
+
+                <div *ngIf="formFtp.controls['puerto_ftp'].errors?.maxlength ||
+                    formFtp.controls['puerto_ftp'].errors?.pattern" class="form-control-feedback">
+                    <div class="alert alert-danger">
+                        <strong>Alerta!</strong> Los valores deben ser numeros enteros.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Campo para el usuario -->
+        <div class="form-group row">
+            <label class="col-2 col-form-label">Usuario</label>
+
+            <div class="col-3">
+                <input class="form-control" formControlName="usuario_ftp" type="text" autofocus id="textNombre"
+                    id="tamaño-fuente-input" maxlength="51">
+
+                <!-- Validacion para el campo usuario -->
+                <div *ngIf="formFtp.controls['usuario_ftp'].errors?.required" class="form-control-feedback"
+                    id="tamaño-fuente-alerta">
+                </div>
+
+                <!-- Mensaje de restricción para el usuario -->
+                <div *ngIf="formFtp.controls['usuario_ftp'].errors?.maxlength" class="form-control-feedback">
+                    <div class="alert alert-danger">
+                        <strong>Alerta!</strong> El campo debe tener máximo 50 carácteres.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Campo para el contraseña -->
+        <div class="form-group row">
+            <label class="col-2 col-form-label">Contraseña</label>
+
+            <div class="col-3">
+                <input class="form-control" formControlName="contrasena_ftp" type="password" autofocus
+                    id="textContrasena" id="tamaño-fuente-input" maxlength="51">
+
+                <!-- Validacion de obligatoriedad -->
+                <div *ngIf="formFtp.controls['contrasena_ftp'].errors?.required" class="form-control-feedback"
+                    id="tamaño-fuente-alerta">
+                </div>
+
+                <!-- Mensaje de restricción -->
+                <div *ngIf="formFtp.controls['contrasena_ftp'].errors?.maxlength" class="form-control-feedback">
+                    <div class="alert alert-danger">
+                        <strong>Alerta!</strong> El campo debe tener máximo 50 carácteres.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Campo para el ip -->
+        <div class="form-group row">
+            <label class="col-2 col-form-label">Ip</label>
+
+            <div class="col-3">
+                <input class="form-control" formControlName="ip_ftp" type="text" autofocus id="textNombre"
+                    id="tamaño-fuente-input" maxlength="51">
+
+                <!-- Validacion para el campo ip -->
+                <div *ngIf="formFtp.controls['ip_ftp'].errors?.required" class="form-control-feedback"
+                    id="tamaño-fuente-alerta">
+                </div>
+
+                <!-- Mensaje de restricción para IP -->
+                <div *ngIf="formFtp.controls['ip_ftp'].errors?.maxlength" class="form-control-feedback">
+                    <div class="alert alert-danger">
+                        <strong>Alerta!</strong> El campo debe tener máximo 50 carácteres.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- boton para conectar con ftp -->
+        <div id="caja-botones" class="form-group-row">
+            <label class="col-1 col-form-label">&nbsp;</label>
+            <div class="col-md-8">
+                <button type="button" (click)="connectFtp()" class="btn btn-outline-primary btn-lg"
+                    [disabled]="!formFtp.valid">
+                    Conectar y guardar
+                </button>
+            </div>
+        </div>
+    </form>
+
+    <!--
+    <div class="container animated fadeIn fast" id="main-container" id="fuente-general">
+        <h1>Log</h1>
+        <div>
+            aqui va el log si conceto correctamente y si conecta se habilita el boton de guardar 
+        </div>
+        <div id="caja-botones" class="form-group-row">
+            <label class="col-1 col-form-label">&nbsp;</label>
+            <div class="col-md-8">
+                <button type="button" class="btn btn-outline-primary btn-lg">
+                    Guardar
+                </button>
+            </div>
+        </div>
+    </div>
+    -->
+</div>

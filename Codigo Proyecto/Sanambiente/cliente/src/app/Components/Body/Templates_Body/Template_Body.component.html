@@ -1,0 +1,103 @@
+<!-- Clase que contiene el HTML de la vista de Plantilla -->
+
+<div class="container animated fadeIn fast" id="main-container" id="fuente-general">
+    <h1>Plantilla</h1>
+    <hr>
+    <form [formGroup]="formTemplate">
+        <!-- Campo para ID Plantilla-->
+        <div class="form-group row">
+            <label class="col-2 col-form-label">Id plantilla</label>
+            <div class="col-2">
+                <input class="form-control" disabled formControlName="id_plantilla" type="number">
+            </div>
+        </div>
+
+        <!-- Campo para el nombre estacion -->
+        <div class="form-group row">
+            <label class="col-2 col-form-label">Estación</label>
+            <div class="col-4">
+                <select formControlName="id_estacion" class="form-control" type="number" id="textId_region"
+                    id="tamaño-fuente-input" data-formrun-required>
+                    <option *ngFor="let station of stationArray" value="{{station.id_estacion}}" name="region-ciudad">
+                        {{station.nombre_estacion}}
+                    </option>
+                </select>
+                <!-- Validacion para el campo Estacion de la Plantilla -->
+                <div *ngIf="formTemplate.controls['id_estacion'].errors?.required" class="form-control-feedback"
+                    id="tamaño-fuente-alerta">
+                </div>
+            </div>
+        </div>
+
+        <!-- Campo para la plantilla -->
+        <div class="form-group row">
+            <label class="col-2 col-form-label">Nombre Plantilla</label>
+            <div class="col-4">
+                <input class="form-control" formControlName="nombre_plantilla" type="text" autofocus id="textNombre"
+                    id="tamaño-fuente-input" maxlength="50">
+            </div>
+            <!-- Validacion para el campo nombre de la plantilla -->
+            <div *ngIf="formTemplate.controls['nombre_plantilla'].errors?.required" class="form-control-feedback"
+                id="tamaño-fuente-alerta">
+            </div>
+            <!-- Mensaje de restricción campo nombre de la plantilla -->
+            <div *ngIf="formTemplate.controls['nombre_plantilla'].errors?.maxlength" class="form-control-feedback">
+                <div class="alert alert-danger">
+                    <strong>Alerta!</strong> El campo debe tener máximo 50 carácteres.
+                </div>
+            </div>
+        </div>
+
+        <!-- Campo para agregar variables -->
+        <div class="form-group row">
+            <label class="col-2 col-form-label">Variables</label>
+            <div class="col-4">
+
+                <!--Boton para agregar una variable-->
+                <div class="buttons">
+                    <button (click)="addField()" class="btn btn-outline-primary btn-lg">Agregar</button>
+                    &nbsp;
+
+                    <!--Boton para quitar una variable-->
+                    <button (click)="deleteField()" class="btn btn-outline-primary btn-lg">Menos</button>
+                </div>
+                &nbsp;
+                &nbsp;
+                <ng-container>
+                    <select formControlName="id_variable" class="form-control" type="number" id="textId_region"
+                        id="tamaño-fuente-input" data-formrun-required aria-placeholder="Selecionar variable">
+                        <option *ngFor="let variable of variableArray" value="{{variable.id_variable}}"
+                            name="region-ciudad">
+                            {{variable.nombre_variable}}
+                        </option>
+                    </select>
+                    <ng-container>
+                        <select formControlName="id_variable" class="form-control" type="number" id="textId_region"
+                            id="tamaño-fuente-input" data-formrun-required aria-placeholder="Selecionar variable"
+                            *ngFor="let a of arrayAddVariable">
+                            <option *ngFor="let variable of variableArray" value="{{variable.id_variable}}"
+                                name="region-ciudad">
+                                {{variable.nombre_variable}}
+                            </option>
+                        </select>
+                    </ng-container>
+                </ng-container>
+
+                <!-- Validacion para el campo variable de la plantilla -->
+                <div *ngIf="formTemplate.controls['id_variable'].errors?.required" class="form-control-feedback"
+                    id="tamaño-fuente-alerta">
+                </div>
+            </div>
+        </div>
+
+        <!-- Boton de guardar de variable -->
+        <div id="caja-botones" class="form-group-row">
+            <label class="col-1 col-form-label">&nbsp;</label>
+            <div class="col-md-8">
+                <input type="button" [disabled]="!formTemplate.valid" class="btn btn-outline-primary btn-lg"
+                    (click)="saveInformation()" value="Guardar">
+            </div>
+        </div>
+
+    </form>
+</div>

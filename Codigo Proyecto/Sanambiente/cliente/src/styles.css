@@ -1,0 +1,123 @@
+/*Esta clase contiene la "plantilla bootstrap" con los estilos utilizados en las diferentes vistas*/
+
+/*Estilos del pie de pagina (NO EXISTE)*/
+footer{
+  color: white;
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
+}
+
+/*Estilos del menu de navegacion (Ubicada en la parte izquierda)*/
+nav{
+  position: fixed;
+  height: 100%;
+  left: 0px;
+}
+
+/*Estilos de la barra de menu (Ubicado en la parte superior)*/
+#menu{
+  float: left;
+  width: 20%;
+  font-size: 15px;
+  font-family: sans-serif;
+}
+
+/*Estilos de los contenedores que contienen los demas elemetos en las vistas*/
+#main-container{
+position: relative;
+left: 10px;
+border: 1px solid rgb(151, 142,142);
+width: 100%;
+height: auto;
+padding-top: 10px;
+}
+
+/* Estilo usados para marcar los errores en las validaciones en los campos de los formularios, 
+  cuando son llenados por los usuarios */
+.ng-invalid.ng-touched:not(form){
+border-left: 6px solid red; 
+}
+
+/* Estilo usados para marcar el estado correcto en las validaciones en los campos de los formularios, 
+  cuando son llenados por los usuarios */
+.ng-valid.ng-touched:not(form){
+  border-left: 6px solid green;
+}
+
+/* Estilo usados en los botones de los formularios (Ej: Botones Guardar, Editar)*/
+#caja-botones{
+  margin: 40px;
+  margin-left: 605px;
+  /* float: right; */
+}
+
+
+/* animaciones  */
+.animated {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+.fast {
+  -webkit-animation-duration: 0.4s;
+  animation-duration: 0.4s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.fadeIn {
+  animation-name: fadeIn;
+}
+
+/* Estilo aplicados a los div de las tablas, en las cuales se lista la informacion de las tablas */
+#div-tabla{
+overflow: auto;
+  height: auto ;
+  width: 550px;
+}
+/* Maneja el scroll (o desplazamiento) de la vista */
+#paragraph{
+  height: 100vh;
+}
+
+/* Estilo usados para el tamaño de la fuente en los campos tipo input de los formularios */
+#tamaño-fuente-input{
+  font-size: 11pt;
+}
+
+/* estilos para los label de los formularios */
+label {
+  text-align: right;
+  /* display: block; */
+  padding: 0.5em 1.5em 0.5em 0;
+}
+
+/* Estilo usados para el tamaño de la fuente de las alerta en los formularios */
+#tamaño-fuente-alerta{
+  font-size: 8pt;
+}
+
+/* Estilo usados para el tamaño de la fuente, del contenido de las tablas las vistas */
+#fuente-general{
+  font-size: 14px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+
+#contenido { 
+  width: 800px; margin: 0 auto; 
+}
+

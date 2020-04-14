@@ -1,0 +1,53 @@
+<!-- Clase que contiene el HTML de la vista de Mantenimiento (Empleada para listar en la tabla los Mantenimiento existentes) -->
+
+<div class="container animated fadeIn fast" id="div-tabla" id="fuente-general">
+    <!-- Boton para agregar un nuevo mantenimiento-->
+    <button [routerLink]="['/maintenance/add_maintenance']" class="btn btn-outline-primary btn-lg">Nuevo
+        Mantenimiento</button>
+    <br><br><br>
+    <h3>Lista de Mantenimientos</h3>
+    <!-- Campo de busqueda -->
+    <form>
+        <input type="search" name="search" aria-label="search" [(ngModel)]="searchText" autocomplete="off"
+            placeholder="Buscar">&nbsp;&nbsp;
+    </form>
+    <br>
+    <!-- Inicio de la tabla, en la cual se listan los mantenimientos existentes -->
+    <table class="table col-6 table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Estación</th>
+                <th scope="col">Partes</th>
+                <th scope="col">Tipo Mantenimiento</th>
+                <th scope="col">Periodicidad Mantenimiento</th>
+                <th scope="col">Nombre Funcionario</th>
+                <th scope="col">Fecha Inicial</th>
+                <th scope="col">Fecha Final</th>
+                <th scope="col">Novedad</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Filas de la tabla-->
+            <tr *ngFor="let mantenimiento of arrayMaintenances | filter:searchText">
+                <td> {{mantenimiento.id_mantenimiento}} </td>
+                <td> {{mantenimiento.nombre_estacion}} </td>
+                <td> {{mantenimiento.nombre_parte}} </td>
+                <td> {{mantenimiento.nombre_tipo_mantenimiento}} </td>
+                <td> {{mantenimiento.tipo_periodicidad}} </td>
+                <td> {{mantenimiento.nombre_funcionario}} </td>
+                <td> {{mantenimiento.fecha_inicial | date:"dd/MM/yyyy"}} </td>
+                <td> {{mantenimiento.fecha_final | date:"dd/MM/yyyy"}} </td>
+                <td> {{mantenimiento.novedad_mantenimiento}} </td>
+                <td>
+                    <!-- Boton para actualizar la informacion de una mantenimiento -->
+                    <a [routerLink]="['/maintenance/edit_maintenance',mantenimiento.id_mantenimiento]"
+                        class="btn btn-outline-primary btn-lg">
+                        Editar
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

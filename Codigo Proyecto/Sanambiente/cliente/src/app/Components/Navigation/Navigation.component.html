@@ -1,0 +1,173 @@
+<!-- Clase que contiene el HTML del menu de navegacion (Ubicado en la parte izquierda) -->
+
+<div class="container" id="menu">
+    <div>
+        <div class="col-sm-3 col-md-12">
+            <div class="panel-group" id="accordion">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><span
+                                    class="glyphicon glyphicon-th-list">
+                                </span> Tablas párametros</a>
+                        </h4>
+                    </div>
+                    <div id="collapseOne" class="panel-collapse collapse in">
+                        <div class="panel-body">
+                            <table class="table">
+                                <tr>
+                                    <td>
+                                        <span class="glyphicon glyphicon-chevron-right"></span><a
+                                            [routerLink]="['alert']"> Alerta</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="glyphicon glyphicon-chevron-right"></span><a
+                                            [routerLink]="['time']"> Base de Tiempo</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="glyphicon glyphicon-chevron-right"></span><a
+                                            [routerLink]="['category']"> Categoría</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="glyphicon glyphicon-chevron-right"></span><a
+                                            [routerLink]="['city']"> Ciudad</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="glyphicon glyphicon-chevron-right"></span><a
+                                            [routerLink]="['station']"> Estación</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="glyphicon glyphicon-chevron-right"></span>
+                                        <a [routerLink]="['gmt']"> GMT</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="glyphicon glyphicon-chevron-right"></span>
+                                        <a [routerLink]="['organization']"> Organización</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="glyphicon glyphicon-chevron-right"></span><a
+                                            [routerLink]="['rank']"> Rango</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="glyphicon glyphicon-chevron-right"></span><a
+                                            [routerLink]="['region']"> Región</a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"><span
+                                    class="glyphicon glyphicon-th">
+                                </span> Gestionar estaciones</a>
+                        </h4>
+                    </div>
+                    <div id="collapseTwo" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <table class="table">
+                                <tr>
+                                    <td>
+                                        <span class="glyphicon glyphicon-chevron-right"></span><a
+                                            [routerLink]="['connect']"> Listar estaciones </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="glyphicon glyphicon-chevron-right"></span><a href=""
+                                            [routerLink]="['template']"> Plantillas
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="glyphicon glyphicon-chevron-right"></span><a
+                                            [routerLink]="['variable']"> Variables
+                                        </a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree"><span
+                                    class="glyphicon glyphicon-wrench">
+                                </span> Gestionar mantenimientos</a>
+                        </h4>
+                    </div>
+                    <div id="collapseThree" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <table class="table">
+                                <tr>
+                                    <td>
+                                        <span class="glyphicon glyphicon-chevron-right"></span><a
+                                            [routerLink]="['/maintenance']"> Mantenimientos</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="glyphicon glyphicon-chevron-right"></span><a
+                                            [routerLink]="['/maintenance_type']"> Tipo de mantenimiento</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="glyphicon glyphicon-chevron-right"></span><a
+                                            [routerLink]="['/part']"> Partes</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="glyphicon glyphicon-chevron-right"></span><a
+                                            [routerLink]="['/periodicity']"> Periodicidad </a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour"><span
+                                    class="glyphicon glyphicon-file">
+                                </span> Reportes</a>
+                        </h4>
+                    </div>
+                    <div id="collapseFour" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <table class="table">
+                                <tr>
+                                    <td>
+                                        <span class="glyphicon glyphicon-shopping-cart"></span><a href=""> Mensuales</a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

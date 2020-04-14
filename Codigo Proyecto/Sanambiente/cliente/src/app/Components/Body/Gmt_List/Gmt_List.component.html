@@ -1,0 +1,40 @@
+<!-- Clase que contiene el HTML de la vista de gmt (Empleada para listar en la tabla las gmt existentes) -->
+
+<div class="container animated fadeIn fast" id="div-tabla" id="fuente-general">
+    <!-- Boton para agregar una nuevo gmt-->
+    <button [routerLink]="['/gmt/add_gmt']" class="btn btn-outline-primary btn-lg">Nuevo Gmt</button>
+    <br><br><br>
+    <h3>Lista de Gmt</h3>
+    <!-- Campo de busqueda -->
+    <form>
+        <input type="search" name="search" aria-label="search" [(ngModel)]="searchText" autocomplete="off"
+            placeholder="Buscar">&nbsp;&nbsp;
+    </form>
+    <br>
+    <!-- Inicio de la tabla, en la cual se listan los gmt existentes-->
+    <table class="table col-6 table-striped">
+        <thead class="thead-dark">
+            <!-- Columnas de la tabla-->
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Nombre GMT</th>
+                <th scope="col">Observación</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Filas de la tabla-->
+            <tr *ngFor="let gmt of arrayGmt | filter:searchText">
+                <td> {{gmt.id_gmt}} </td>
+                <td> {{gmt.nombre_gmt}} </td>
+                <td> {{gmt.observacion_gmt}} </td>
+                <td>
+                    <!-- Boton para actualizar la informacion de un gmt -->
+                    <a [routerLink]="['/gmt/edit_gmt',gmt.id_gmt]" class="btn btn-outline-primary btn-lg">
+                        Editar
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

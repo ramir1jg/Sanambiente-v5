@@ -1,0 +1,174 @@
+<!-- Clase que contiene el HTML de la vista de estacion (Empleada para conctar estacion) -->
+
+<div class="container animated fadeIn fast" id="main-container" id="fuente-general">
+    <h1>Estación</h1>
+    <hr>
+    <form [formGroup]="formStation">
+
+        <!-- Campo para ID de la estacion, -->
+        <div class="form-group row">
+            <label class="col-2 col-form-label">ID Estación</label>
+            <div class="col-4">
+                <input class="form-control" type="number" id="textId_ciudad" id="tamaño-fuente-input"
+                    value={{arrayStations.id_estacion}} disabled>
+            </div>
+        </div>
+
+        <!-- Campo para el nombre de la estacion -->
+        <div class="form-group row">
+            <label class="col-2 col-form-label">Nombre Estación</label>
+            <div class="col-5">
+                <input class="form-control" formControlName="nombre_estacion" type="text" autofocus id="textNombre"
+                    [(ngModel)]="arrayStations.nombre_estacion" id="tamaño-fuente-input" disabled>
+            </div>
+        </div>
+
+        <!-- Campo para el serial de la estacion -->
+        <div class="form-group row">
+            <label class="col-2 col-form-label">Serial Estación</label>
+            <div class="col-5">
+                <input class="form-control" formControlName="serial_estacion" type="text" autofocus id="textSerial"
+                    [(ngModel)]="arrayStations.serial_estacion" id="tamaño-fuente-input" disabled>
+            </div>
+        </div>
+
+        <!-- Campo para el nombre corto de la estacion -->
+        <div class="form-group row">
+            <label class="col-2 col-form-label">Nombre corto</label>
+            <div class="col-5">
+                <input class="form-control" formControlName="nombre_corto_estacion" type="text" autofocus
+                    id="textNombreCorto" [(ngModel)]="arrayStations.nombre_corto_estacion" id="tamaño-fuente-input"
+                    disabled>
+            </div>
+        </div>
+
+        <!-- Campo de tipo input, que muestra el nombre actual de la categoria, solo cuando se edita una estacion -->
+        <div class="form-group row">
+            <label class="col-2 col-form-label">Categoría</label>
+            <div class="col-4">
+                <input class="form-control" type="text" id="textID_estacion" id="tamaño-fuente-input"
+                    value={{arrayStations.nombre_categoria}} disabled>
+            </div>
+        </div>
+
+        <!-- Campo de tipo input, que muestra el nombre actual de la base de tiempo, solo cuando se edita una estacion -->
+        <div class="form-group row">
+            <label class="col-2 col-form-label">Base de tiempo</label>
+            <div class="col-4">
+                <input class="form-control" type="text" id="textID_estacion" id="tamaño-fuente-input"
+                    value={{arrayStations.nombre_tiempo}} disabled>
+            </div>
+        </div>
+
+        <!-- Campo de tipo input, que muestra el nombre actual de la region, solo cuando se edita una estacion -->
+        <div class="form-group row">
+            <label class="col-2 col-form-label">Región</label>
+            <div class="col-4">
+                <input class="form-control" type="text" id="textID_estacion" id="tamaño-fuente-input"
+                    value={{arrayStations.nombre_region}} disabled>
+            </div>
+        </div>
+
+        <!-- Campo de tipo input, que muestra el nombre actual de la ciudad, solo cuando se edita una estacion -->
+        <div class="form-group row">
+            <label class="col-2 col-form-label">Ciudad </label>
+            <div class="col-4">
+                <input class="form-control" type="text" id="textID_estacion" id="tamaño-fuente-input"
+                    value={{arrayStations.nombre_ciudad}} disabled>
+            </div>
+        </div>
+
+        <!-- Campo de tipo input, que muestra el nombre actual de la gmt, solo cuando se edita una estacion -->
+        <div class="form-group row">
+            <label class="col-2 col-form-label">GMT</label>
+            <div class="col-4">
+                <input class="form-control" type="text" id="textID_estacion" id="tamaño-fuente-input"
+                    value={{arrayStations.nombre_gmt}} disabled>
+            </div>
+        </div>
+
+        <!-- Campo para el protocolo de la estacion -->
+        <div class="form-group row">
+            <label class="col-2 col-form-label">protocolo</label>
+            <div class="col-4">
+                <input class="form-control" type="text" id="textID_estacion" id="tamaño-fuente-input"
+                    value={{arrayStations.protocolo_estacion}} disabled>
+            </div>
+        </div>
+
+        <!-- Campo para la latitud de la estacion -->
+        <div class="form-group row">
+            <label class="col-2 col-form-label">Latitud</label>
+            <div class="col-5">
+                <input class="form-control" formControlName="latitud_estacion" type="text" autofocus id="textLatitud"
+                    [(ngModel)]="arrayStations.latitud_estacion" id="tamaño-fuente-input" disabled>
+            </div>
+        </div>
+
+        <!-- Campo para la Longitud de la estacion -->
+        <div class="form-group row">
+            <label class="col-2 col-form-label">Longitud</label>
+            <div class="col-5">
+                <input class="form-control" formControlName="longitud_estacion" type="text" autofocus id="textLongitud"
+                    [(ngModel)]="arrayStations.longitud_estacion" id="tamaño-fuente-input" disabled>
+            </div>
+        </div>
+
+        <!-- Campo para la Elevacion de la estacion -->
+        <div class="form-group row">
+            <label class="col-2 col-form-label">Elevación</label>
+            <div class="col-5">
+                <input class="form-control" formControlName="elevacion_estacion" type="text" autofocus
+                    id="textElevacion" [(ngModel)]="arrayStations.elevacion_estacion" id="tamaño-fuente-input" disabled>
+            </div>
+        </div>
+
+        <!-- Campo para observación de la estacion  -->
+        <div class="form-group row">
+            <label class="col-2 col-form-label">Observación</label>
+            <div class="col-5">
+                <textarea ng-thim="false" class="form-control" formControlName="observacion_estacion" rows="4"
+                    [(ngModel)]="arrayStations.observacion_estacion" id="tamaño-fuente-input" disabled>
+                </textarea>
+
+            </div>
+        </div>
+
+        <!-- Campo para las plantillas con la cual se relaciona la estacion-->
+        <div>
+            <div class="form-group row">
+                <label class="col-2 col-form-label">Plantilla</label>
+                <div class="col-4">
+                    <select formControlName="id_plantilla" class="form-control" type="number" id="textId_plantilla"
+                        id="tamaño-fuente-input" data-formrun-required>
+                        <option *ngFor="let plantillaEstacion of arrayTemplates"
+                            value="{{plantillaEstacion.id_plantilla}}" name="plantilla-estacion">
+                            {{plantillaEstacion.id_plantilla}}- {{plantillaEstacion.nombre_plantilla}}
+                        </option>
+                    </select>
+                    <!-- Validacion para el campo plantilla de la estacion -->
+                    <div *ngIf="formStation.controls['id_plantilla'].errors?.required" class="form-control-feedback"
+                        id="tamaño-fuente-alerta">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Boton de guardar de estacion -->
+        <div id="caja-botones" class="form-group-row">
+            <label class="col-8 col-form-label">&nbsp;</label>
+            <div class="col-md-12">
+                <ng-container *ngIf="showButton === 'modbus'">
+                    <button (click)="example()"
+                        [routerLink]="['/modbus/add_modbus', arrayStations.id_estacion, formStation.get('id_plantilla').value]"
+                        class="btn btn-outline-primary btn-lg">Conectar Modbus</button>
+                </ng-container>
+                <ng-container *ngIf="showButton === 'ftp'">
+                    <button (click)="example()"
+                        [routerLink]="['/ftp/add_ftp', arrayStations.id_estacion, formStation.get('id_plantilla').value]"
+                        class="btn btn-outline-primary btn-lg">Conectar FTP</button>
+                </ng-container>
+            </div>
+        </div>
+    </form>
+</div>

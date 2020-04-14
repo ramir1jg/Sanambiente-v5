@@ -1,0 +1,43 @@
+<!-- Clase que contiene el HTML de la vista de parte (Empleada para listar en la tabla las partes existentes) -->
+
+<div class="container animated fadeIn fast" id="div-tabla" id="fuente-general">
+    <!-- Boton para agregar una nueva parte-->
+    <button [routerLink]="['/part/add_part']" class="btn btn-outline-primary btn-lg">Nueva
+        Parte</button>
+    <br><br><br>
+    <h3>Lista de Partes</h3>
+    <!-- Campo de busqueda -->
+    <form>
+        <input type="search" name="search" aria-label="search" [(ngModel)]="searchText" autocomplete="off"
+            placeholder="Buscar">&nbsp;&nbsp;
+    </form>
+    <br>
+    <!-- Inicio de la tabla, en la cual se listan las partes existentes-->
+    <table class="table col-6 table-striped">
+        <thead class="thead-dark">
+            <!-- Columnas de la tabla-->
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Código Catálogo</th>
+                <th scope="col">Observación</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Filas de la tabla-->
+            <tr *ngFor="let parte of arrayParts | filter:searchText">
+                <td> {{parte.id_parte}} </td>
+                <td> {{parte.nombre_parte}} </td>
+                <td> {{parte.codigo_catalogo}} </td>
+                <td> {{parte.observacion_parte}} </td>
+                <td>
+                    <!-- Boton para actualizar la informacion de una parte -->
+                    <a [routerLink]="['/part/edit_part',parte.id_parte]" class="btn btn-outline-primary btn-lg">
+                        Editar
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
